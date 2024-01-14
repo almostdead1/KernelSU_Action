@@ -296,3 +296,11 @@ jobs:
       with:
         name: boot${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
         path: kernel_workspace/boot.img
+
+    - name: Release Kernel on Telegram
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.CHANNEL_ID }}
+        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        message: Kernel Build Done. It took ${{ steps.build.outputs.elapsed_time }} seconds.
+        document: ${{ steps.build.outputs.outfile }}
