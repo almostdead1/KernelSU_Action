@@ -300,7 +300,9 @@ jobs:
     - name: Release Kernel on Telegram
       uses: appleboy/telegram-action@master
       with:
+        name: AnyKernel3${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
+        path: kernel_workspace/AnyKernel3/*
         to: ${{ secrets.CHANNEL_ID }}
         token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        message: Kernel Build Done. It took ${{ steps.build.outputs.elapsed_time }} seconds.
-        document: ${{ steps.build.outputs.outfile }}
+        message: Kernel Build Done.
+        document: AnyKernel3${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
