@@ -260,7 +260,7 @@ jobs:
           export PATH=$GITHUB_WORKSPACE/kernel_workspace/gcc-64/bin:$GITHUB_WORKSPACE/kernel_workspace/gcc-32/bin:$PATH
           export ARCH=arm64
           export SUBARCH=arm64
-          export CROSS_COMPILE=$GITHUB_WORKSPACE/kernel_workspace/gcc-64/bin/${{ env.CUSTOM_GCC_64_BIN }}" >> $GITHUB_ENV
+          export CROSS_COMPILE="$GITHUB_WORKSPACE/kernel_workspace/gcc-64/bin/${{ env.CUSTOM_GCC_64_BIN }}" >> $GITHUB_ENV
           mkdir -p out
           make O=out clean
           make O=out mrproper
