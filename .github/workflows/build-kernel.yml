@@ -27,6 +27,7 @@ jobs:
             CUSTOM_CLANG_SOURCE
             CUSTOM_CLANG_BRANCH
             CUSTOM_CMDS
+            CLANG_DOWNLOAD
             CLANG_BRANCH
             CLANG_VERSION
             GCC_ONLY
@@ -96,9 +97,11 @@ jobs:
       if: env.USE_CUSTOM_CLANG != 'true'
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
+        if [ ${{ env.CLANG_DOWNLOAD }} = true ]; then
         mkdir clang-aosp
         wget https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/${{ env.CLANG_BRANCH }}/clang-${{ env.CLANG_VERSION }}.tar.gz
         tar -C clang-aosp/ -zxvf clang-${{ env.CLANG_VERSION }}.tar.gz
+        fi
 
     - name: Download Custom-Clang
       if: env.USE_CUSTOM_CLANG == 'true'
